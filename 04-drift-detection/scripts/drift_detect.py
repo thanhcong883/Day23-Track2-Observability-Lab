@@ -96,8 +96,12 @@ def main() -> int:
 
     # Optional: full Evidently HTML report (large dependency, gracefully skip if missing)
     try:
-        from evidently.report import Report
-        from evidently.metric_preset import DataDriftPreset
+        try:
+            from evidently.legacy.report import Report
+            from evidently.legacy.metric_preset import DataDriftPreset
+        except ImportError:
+            from evidently.report import Report
+            from evidently.metric_preset import DataDriftPreset
 
         report = Report(metrics=[DataDriftPreset()])
         report.run(reference_data=reference, current_data=current)

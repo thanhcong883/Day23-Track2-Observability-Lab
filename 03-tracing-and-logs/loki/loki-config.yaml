@@ -3,6 +3,8 @@
 
 auth_enabled: false
 
+target: all
+
 server:
   http_listen_port: 3100
   log_level: warn
